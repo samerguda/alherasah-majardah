@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Status Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">الحراسة </h2>
+    <h4 style="text-align: center;"> مبث تمق </h2>
+
+<div class="header">
+    <div id="datetime"></div>
+    <div class="buttons">
+        <button onclick="copyTable()">Copy Content</button>
+        <button onclick="printTable()">Print</button>
+        <button onclick="sendWhatsApp()">Send via WhatsApp</button>
+        <button onclick="sendEmail()">Send via Email</button>
+    </div>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Location</th>
+            <th>Required</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Majardh</td>
+            <td>1</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Bariq</td>
+            <td>1</td>
+            <td>Close</td>
+        </tr>
+        <tr>
+            <td>3  </td>
+            <td>Thadouth. ElMandhar</td>
+            <td>1</td>
+            <td>X need door closer</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Tarqeesh</td>
+            <td>2</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Mahayel</td>
+            <td>1</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>  6</td>
+            <td>Qana Pumpstation</td>
+            <td>2</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>7  </td>
+            <td>Qana Reservoir</td>
+            <td>1</td>
+            <td>Close</td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td>Total</td>
+            <td>9</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    // Display current date and time
+    document.getElementById("datetime").innerHTML = new Date().toLocaleString();
+
+    // Function to copy table content
+    function copyTable() {
+        const table = document.querySelector("table").outerHTML;
+        navigator.clipboard.writeText(table).then(() => {
+            alert("Table content copied!");
+        });
+    }
+
+    // Function to print the table
+    function printTable() {
+        window.print();
+    }
+
+    // Function to send table content via WhatsApp
+    function sendWhatsApp() {
+        const url = `https://wa.me/?text=${encodeURIComponent(document.querySelector("table").outerHTML)}`;
+        window.open(url, "_blank");
+    }
+
+    // Function to send table content via Email
+    function sendEmail() {
+        const emailBody = encodeURIComponent(document.querySelector("table").outerHTML);
+        window.location.href = `mailto:?subject=Task Status Table&body=${emailBody}`;
+    }
+</script>
+
+</body>
+</html>
